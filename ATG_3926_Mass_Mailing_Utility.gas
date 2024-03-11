@@ -1,0 +1,936 @@
+Program.Sub.ScreenSU.Start
+gui.F_MEU..create
+gui.F_MEU..caption("Mass Mailing Utility")
+gui.F_MEU..size(8505,11550)
+gui.F_MEU..position(0,0)
+gui.F_MEU..event(unload,f_meu_unload)
+gui.F_MEU..alwaysontop(False)
+gui.F_MEU..fontname("Arial")
+gui.F_MEU..fontsize(8)
+gui.F_MEU..forecolor(0)
+gui.F_MEU..fontstyle(,,,,)
+gui.F_MEU..BackColor(-2147483633)
+gui.F_MEU..controlbox(True)
+gui.F_MEU..maxbutton(True)
+gui.F_MEU..minbutton(True)
+gui.F_MEU..mousepointer(0)
+gui.F_MEU..moveable(True)
+gui.F_MEU..sizeable(True)
+gui.F_MEU..ShowInTaskBar(True)
+gui.F_MEU..titlebar(True)
+gui.F_MEU.lbl_event.create(label,"Event/Note Text",True,1935,255,1,200,8900,True,0,Arial,8,-2147483633,0)
+gui.F_MEU.lbl_event.defaultvalue("")
+gui.F_MEU.lbl_event.controlgroup(0)
+gui.F_MEU.txt_event.create(textboxm)
+gui.F_MEU.txt_event.text("")
+gui.F_MEU.txt_event.visible(True)
+gui.F_MEU.txt_event.size(7875,1245)
+gui.F_MEU.txt_event.zorder(0)
+gui.F_MEU.txt_event.position(205,9085)
+gui.F_MEU.txt_event.enabled(True)
+gui.F_MEU.txt_event.alignment(0)
+gui.F_MEU.txt_event.fontname("Arial")
+gui.F_MEU.txt_event.fontsize(8)
+gui.F_MEU.txt_event.BackColor(-2147483643)
+gui.F_MEU.txt_event.defaultvalue("")
+gui.F_MEU.txt_event.controlgroup(0)
+gui.F_MEU.cmd_Queue.create(button)
+gui.F_MEU.cmd_Queue.caption("Queue Mailing")
+gui.F_MEU.cmd_Queue.visible(True)
+gui.F_MEU.cmd_Queue.size(1320,375)
+gui.F_MEU.cmd_Queue.zorder(0)
+gui.F_MEU.cmd_Queue.position(200,10500)
+gui.F_MEU.cmd_Queue.enabled(True)
+gui.F_MEU.cmd_Queue.fontname("Arial")
+gui.F_MEU.cmd_Queue.fontsize(8)
+gui.F_MEU.cmd_Queue.event(click,cmd_queue_click)
+gui.F_MEU.cmd_Queue.defaultvalue("")
+gui.F_MEU.cmd_Queue.controlgroup(0)
+gui.F_MEU.chk_logAs.create(checkbox)
+gui.F_MEU.chk_logAs.caption("Log Action As")
+gui.F_MEU.chk_logAs.visible(True)
+gui.F_MEU.chk_logAs.size(1395,255)
+gui.F_MEU.chk_logAs.zorder(0)
+gui.F_MEU.chk_logAs.position(215,8480)
+gui.F_MEU.chk_logAs.enabled(True)
+gui.F_MEU.chk_logAs.alignment(0)
+gui.F_MEU.chk_logAs.fontname("Arial")
+gui.F_MEU.chk_logAs.fontsize(8)
+gui.F_MEU.chk_logAs.defaultvalue("")
+gui.F_MEU.chk_logAs.controlgroup(0)
+gui.F_MEU.ddl_logAction.create(dropdownlist)
+gui.F_MEU.ddl_logAction.visible(True)
+gui.F_MEU.ddl_logAction.size(2325,330)
+gui.F_MEU.ddl_logAction.zorder(0)
+gui.F_MEU.ddl_logAction.position(1600,8400)
+gui.F_MEU.ddl_logAction.enabled(True)
+gui.F_MEU.ddl_logAction.fontname("Arial")
+gui.F_MEU.ddl_logAction.fontsize(8)
+gui.F_MEU.ddl_logAction.defaultvalue("")
+gui.F_MEU.ddl_logAction.controlgroup(0)
+gui.F_MEU.lbl_sendTo.create(label,"Send To",True,795,240,1,215,8070,True,0,Arial,8,-2147483633,0)
+gui.F_MEU.lbl_sendTo.defaultvalue("")
+gui.F_MEU.lbl_sendTo.controlgroup(0)
+gui.F_MEU.ddl_CnctType.create(dropdownlist)
+gui.F_MEU.ddl_CnctType.visible(True)
+gui.F_MEU.ddl_CnctType.size(3030,330)
+gui.F_MEU.ddl_CnctType.zorder(0)
+gui.F_MEU.ddl_CnctType.position(900,8000)
+gui.F_MEU.ddl_CnctType.enabled(True)
+gui.F_MEU.ddl_CnctType.fontname("Arial")
+gui.F_MEU.ddl_CnctType.fontsize(8)
+gui.F_MEU.ddl_CnctType.defaultvalue("")
+gui.F_MEU.ddl_CnctType.controlgroup(0)
+gui.F_MEU.chk_ExclTable.create(checkbox)
+gui.F_MEU.chk_ExclTable.caption("Check Exclusion Table")
+gui.F_MEU.chk_ExclTable.visible(True)
+gui.F_MEU.chk_ExclTable.size(1935,255)
+gui.F_MEU.chk_ExclTable.zorder(0)
+gui.F_MEU.chk_ExclTable.position(200,7700)
+gui.F_MEU.chk_ExclTable.enabled(True)
+gui.F_MEU.chk_ExclTable.alignment(0)
+gui.F_MEU.chk_ExclTable.fontname("Arial")
+gui.F_MEU.chk_ExclTable.fontsize(8)
+gui.F_MEU.chk_ExclTable.defaultvalue("")
+gui.F_MEU.chk_ExclTable.controlgroup(0)
+gui.F_MEU.chk_testMsg.create(checkbox)
+gui.F_MEU.chk_testMsg.caption("Send Test Message To (Will Not Send to List)")
+gui.F_MEU.chk_testMsg.visible(True)
+gui.F_MEU.chk_testMsg.size(3720,255)
+gui.F_MEU.chk_testMsg.zorder(0)
+gui.F_MEU.chk_testMsg.position(4300,8100)
+gui.F_MEU.chk_testMsg.enabled(True)
+gui.F_MEU.chk_testMsg.alignment(0)
+gui.F_MEU.chk_testMsg.fontname("Arial")
+gui.F_MEU.chk_testMsg.fontsize(8)
+gui.F_MEU.chk_testMsg.event(click,chk_testmsg_click)
+gui.F_MEU.chk_testMsg.defaultvalue("")
+gui.F_MEU.chk_testMsg.controlgroup(0)
+gui.F_MEU.txt_testMsg.create(textbox,"",True,3735,300,0,4300,8400,True,0,Arial,8,-2147483643,1)
+gui.F_MEU.txt_testMsg.defaultvalue("")
+gui.F_MEU.txt_testMsg.controlgroup(0)
+gui.F_MEU.chk_deferSend.create(checkbox)
+gui.F_MEU.chk_deferSend.caption("Defer Sending Until")
+gui.F_MEU.chk_deferSend.visible(True)
+gui.F_MEU.chk_deferSend.size(1935,255)
+gui.F_MEU.chk_deferSend.zorder(0)
+gui.F_MEU.chk_deferSend.position(4300,7700)
+gui.F_MEU.chk_deferSend.enabled(True)
+gui.F_MEU.chk_deferSend.alignment(0)
+gui.F_MEU.chk_deferSend.fontname("Arial")
+gui.F_MEU.chk_deferSend.fontsize(8)
+gui.F_MEU.chk_deferSend.defaultvalue("")
+gui.F_MEU.chk_deferSend.controlgroup(0)
+gui.F_MEU.dtp_defer.create(datepicker)
+gui.F_MEU.dtp_defer.visible(True)
+gui.F_MEU.dtp_defer.size(1965,345)
+gui.F_MEU.dtp_defer.zorder(0)
+gui.F_MEU.dtp_defer.position(6100,7600)
+gui.F_MEU.dtp_defer.enabled(True)
+gui.F_MEU.dtp_defer.checkbox(False)
+gui.F_MEU.dtp_defer.defaultvalue("")
+gui.F_MEU.dtp_defer.controlgroup(0)
+gui.F_MEU.gsfg_attachments.create(gsflexgrid)
+gui.F_MEU.gsfg_attachments.FixedRows(0)
+gui.F_MEU.gsfg_attachments.FixedCols(0)
+gui.F_MEU.gsfg_attachments.visible(True)
+gui.F_MEU.gsfg_attachments.size(6270,1155)
+gui.F_MEU.gsfg_attachments.zorder(0)
+gui.F_MEU.gsfg_attachments.position(200,6300)
+gui.F_MEU.gsfg_attachments.enabled(True)
+gui.F_MEU.gsfg_attachments.event(commandclick,gsfg_attachments_commandclick)
+gui.F_MEU.txt_attachment.create(textbox,"",True,4440,330,0,200,5900,True,0,Arial,8,-2147483643,1)
+gui.F_MEU.txt_attachment.defaultvalue("")
+gui.F_MEU.txt_attachment.controlgroup(0)
+gui.F_MEU.cmd_filebrowser.create(button)
+gui.F_MEU.cmd_filebrowser.caption("^")
+gui.F_MEU.cmd_filebrowser.visible(True)
+gui.F_MEU.cmd_filebrowser.size(300,300)
+gui.F_MEU.cmd_filebrowser.zorder(0)
+gui.F_MEU.cmd_filebrowser.position(4700,5900)
+gui.F_MEU.cmd_filebrowser.enabled(True)
+gui.F_MEU.cmd_filebrowser.fontname("Arial")
+gui.F_MEU.cmd_filebrowser.fontsize(8)
+gui.F_MEU.cmd_filebrowser.event(click,cmd_filebrowser_click)
+gui.F_MEU.cmd_filebrowser.defaultvalue("")
+gui.F_MEU.cmd_filebrowser.controlgroup(0)
+gui.F_MEU.txt_body.create(textboxm)
+gui.F_MEU.txt_body.text("")
+gui.F_MEU.txt_body.visible(True)
+gui.F_MEU.txt_body.size(7905,1485)
+gui.F_MEU.txt_body.zorder(0)
+gui.F_MEU.txt_body.position(200,4100)
+gui.F_MEU.txt_body.enabled(True)
+gui.F_MEU.txt_body.alignment(0)
+gui.F_MEU.txt_body.fontname("Arial")
+gui.F_MEU.txt_body.fontsize(8)
+gui.F_MEU.txt_body.BackColor(-2147483643)
+gui.F_MEU.txt_body.defaultvalue("")
+gui.F_MEU.txt_body.controlgroup(0)
+gui.F_MEU.cmd_attach.create(button)
+gui.F_MEU.cmd_attach.caption("Attach")
+gui.F_MEU.cmd_attach.visible(True)
+gui.F_MEU.cmd_attach.size(855,375)
+gui.F_MEU.cmd_attach.zorder(0)
+gui.F_MEU.cmd_attach.position(5100,5900)
+gui.F_MEU.cmd_attach.enabled(True)
+gui.F_MEU.cmd_attach.fontname("Arial")
+gui.F_MEU.cmd_attach.fontsize(8)
+gui.F_MEU.cmd_attach.event(click,cmd_attach_click)
+gui.F_MEU.cmd_attach.defaultvalue("")
+gui.F_MEU.cmd_attach.controlgroup(0)
+gui.F_MEU.lbl_attachments.create(label,"Attachments",True,1935,255,1,200,5700,True,0,Arial,8,-2147483633,0)
+gui.F_MEU.lbl_attachments.defaultvalue("")
+gui.F_MEU.lbl_attachments.controlgroup(0)
+gui.F_MEU.lbl_body.create(label,"Body Text",True,1935,255,1,200,3900,True,0,Arial,8,-2147483633,0)
+gui.F_MEU.lbl_body.defaultvalue("")
+gui.F_MEU.lbl_body.controlgroup(0)
+gui.F_MEU.txt_adtlHeaders.create(textboxm)
+gui.F_MEU.txt_adtlHeaders.text("")
+gui.F_MEU.txt_adtlHeaders.visible(True)
+gui.F_MEU.txt_adtlHeaders.size(7875,1320)
+gui.F_MEU.txt_adtlHeaders.zorder(0)
+gui.F_MEU.txt_adtlHeaders.position(200,2400)
+gui.F_MEU.txt_adtlHeaders.enabled(True)
+gui.F_MEU.txt_adtlHeaders.alignment(0)
+gui.F_MEU.txt_adtlHeaders.fontname("Arial")
+gui.F_MEU.txt_adtlHeaders.fontsize(8)
+gui.F_MEU.txt_adtlHeaders.BackColor(-2147483643)
+gui.F_MEU.txt_adtlHeaders.defaultvalue("")
+gui.F_MEU.txt_adtlHeaders.controlgroup(0)
+gui.F_MEU.lbl_adtlheaders.create(label,"Additional Headers",True,1935,255,1,200,2200,True,0,Arial,8,-2147483633,0)
+gui.F_MEU.lbl_adtlheaders.defaultvalue("")
+gui.F_MEU.lbl_adtlheaders.controlgroup(0)
+gui.F_MEU.txt_subject.create(textbox,"",True,6660,330,0,200,1800,True,0,Arial,8,-2147483643,1)
+gui.F_MEU.txt_subject.defaultvalue("")
+gui.F_MEU.txt_subject.controlgroup(0)
+gui.F_MEU.lbl_subject.create(label,"Subject",True,975,225,1,200,1500,True,0,Arial,8,-2147483633,0)
+gui.F_MEU.lbl_subject.defaultvalue("")
+gui.F_MEU.lbl_subject.controlgroup(0)
+gui.F_MEU.ddl_listType.create(dropdownlist)
+gui.F_MEU.ddl_listType.visible(True)
+gui.F_MEU.ddl_listType.size(2940,330)
+gui.F_MEU.ddl_listType.zorder(0)
+gui.F_MEU.ddl_listType.position(900,700)
+gui.F_MEU.ddl_listType.enabled(True)
+gui.F_MEU.ddl_listType.fontname("Arial")
+gui.F_MEU.ddl_listType.fontsize(8)
+gui.F_MEU.ddl_listType.event(lostfocus,ddl_listtype_change)
+gui.F_MEU.ddl_listType.defaultvalue("")
+gui.F_MEU.ddl_listType.controlgroup(0)
+gui.F_MEU.ddl_listName.create(dropdownlist)
+gui.F_MEU.ddl_listName.visible(True)
+gui.F_MEU.ddl_listName.size(2940,330)
+gui.F_MEU.ddl_listName.zorder(0)
+gui.F_MEU.ddl_listName.position(900,1100)
+gui.F_MEU.ddl_listName.enabled(True)
+gui.F_MEU.ddl_listName.fontname("Arial")
+gui.F_MEU.ddl_listName.fontsize(8)
+gui.F_MEU.ddl_listName.defaultvalue("")
+gui.F_MEU.ddl_listName.controlgroup(0)
+gui.F_MEU.lbl_sendList.create(label,"Send To",True,1035,255,1,200,700,True,0,Arial,8,-2147483633,0)
+gui.F_MEU.lbl_sendList.defaultvalue("")
+gui.F_MEU.lbl_sendList.controlgroup(0)
+gui.F_MEU.lbl_sendFrom.create(label,"Send From",True,1935,255,1,200,100,True,0,Arial,8,-2147483633,0)
+gui.F_MEU.lbl_sendFrom.defaultvalue("")
+gui.F_MEU.lbl_sendFrom.controlgroup(0)
+gui.F_MEU.txt_from.create(textbox,"",True,3630,300,0,200,300,True,0,Arial,8,-2147483643,1)
+gui.F_MEU.txt_from.defaultvalue("")
+gui.F_MEU.txt_from.controlgroup(0)
+gui.F_MEU.cmd_clear.create(button)
+gui.F_MEU.cmd_clear.caption("Clear")
+gui.F_MEU.cmd_clear.visible(True)
+gui.F_MEU.cmd_clear.size(855,375)
+gui.F_MEU.cmd_clear.zorder(0)
+gui.F_MEU.cmd_clear.position(7200,10500)
+gui.F_MEU.cmd_clear.enabled(True)
+gui.F_MEU.cmd_clear.fontname("Arial")
+gui.F_MEU.cmd_clear.fontsize(8)
+gui.F_MEU.cmd_clear.event(click,cmd_clear_click)
+gui.F_MEU.cmd_clear.defaultvalue("")
+gui.F_MEU.cmd_clear.controlgroup(0)
+gui.F_MEU.txt_from.tabstop(True)
+gui.F_MEU.txt_from.tabindex(1)
+gui.F_MEU.ddl_listType.tabstop(True)
+gui.F_MEU.ddl_listType.tabindex(2)
+gui.F_MEU.ddl_listName.tabstop(True)
+gui.F_MEU.ddl_listName.tabindex(3)
+gui.F_MEU.txt_subject.tabstop(True)
+gui.F_MEU.txt_subject.tabindex(4)
+gui.F_MEU.txt_adtlHeaders.tabstop(True)
+gui.F_MEU.txt_adtlHeaders.tabindex(5)
+gui.F_MEU.txt_body.tabstop(True)
+gui.F_MEU.txt_body.tabindex(6)
+gui.F_MEU.txt_attachment.tabstop(True)
+gui.F_MEU.txt_attachment.tabindex(7)
+gui.F_MEU.cmd_filebrowser.tabstop(True)
+gui.F_MEU.cmd_filebrowser.tabindex(8)
+gui.F_MEU.cmd_attach.tabstop(True)
+gui.F_MEU.cmd_attach.tabindex(9)
+gui.F_MEU.chk_ExclTable.tabstop(True)
+gui.F_MEU.chk_ExclTable.tabindex(10)
+gui.F_MEU.ddl_CnctType.tabstop(True)
+gui.F_MEU.ddl_CnctType.tabindex(11)
+gui.F_MEU.chk_logAs.tabstop(True)
+gui.F_MEU.chk_logAs.tabindex(12)
+gui.F_MEU.ddl_logAction.tabstop(True)
+gui.F_MEU.ddl_logAction.tabindex(13)
+gui.F_MEU.chk_deferSend.tabstop(True)
+gui.F_MEU.chk_deferSend.tabindex(14)
+gui.F_MEU.dtp_defer.tabstop(True)
+gui.F_MEU.dtp_defer.tabindex(15)
+gui.F_MEU.chk_testMsg.tabstop(True)
+gui.F_MEU.chk_testMsg.tabindex(16)
+gui.F_MEU.txt_testMsg.tabstop(True)
+gui.F_MEU.txt_testMsg.tabindex(17)
+gui.F_MEU.txt_event.tabstop(True)
+gui.F_MEU.txt_event.tabindex(18)
+gui.F_MEU.cmd_Queue.tabstop(True)
+gui.F_MEU.cmd_Queue.tabindex(19)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+
+Variable.UDT.CompList.Define("sComp",String)
+Variable.UDT.CompList.Define("sType",String)
+Variable.UDT.CompList.Define("sCompName",String)
+Variable.UDT.CompList.Define("sCompEml",String)
+Variable.uGlobal.uComp.Declare("CompList")
+Variable.UDT.Recipients.Define("sName",String)
+Variable.UDT.Recipients.Define("sEmail",String)
+Variable.UDT.Recipients.Define("sPrefix",String)
+Variable.UDT.Recipients.Define("sFirst",String)
+Variable.UDT.Recipients.Define("sLast",String)
+Variable.UDT.Recipients.Define("sSfx",String)
+Variable.UDT.Recipients.Define("sPreferred",String)
+Variable.UDT.Recipients.Define("sJobTitle",String)
+Variable.UDT.Recipients.Define("iCompIndex",Long)
+Variable.uGlobal.uRecipients.Declare("Recipients")
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+
+V.Global.sLogFile.Declare(String)
+V.Local.bRet.Declare(Boolean)
+V.Local.iRet.Declare(Long)
+
+Function.Global.Messaging.IsCourierRunning(V.Local.iRet)
+F.Intrinsic.Control.If(V.Local.iRet,<>,0)
+		F.Intrinsic.String.Concat(V.Caller.LocalGSSTempDir,"\MassMailingUtil_",V.Caller.Terminal,".log",V.Global.sLogFile)
+		F.Intrinsic.File.Exists(V.Global.sLogFile,V.Local.bRet)
+		F.Intrinsic.Control.If(V.Local.bRet,=,True)
+			Function.Intrinsic.File.DeleteFile(V.Global.sLogFile)
+		F.Intrinsic.Control.EndIf
+		F.Intrinsic.File.String2File(V.Global.sLogFile,"Starting new logging session for this terminal.")
+		F.ODBC.Connection!conX.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+		F.Intrinsic.Control.CallSub(Format_screen)
+		Gui.F_MEU..Show
+F.Intrinsic.Control.Else
+	F.Intrinsic.UI.Msgbox("Please start Courier before launching this program.")
+F.Intrinsic.Control.EndIf
+
+Program.Sub.Main.End
+
+program.sub.f_meu_unload.start
+
+F.ODBC.Connection!conX.Close
+F.Intrinsic.Control.End
+
+program.sub.f_meu_unload.end
+
+program.sub.ddl_listtype_change.start
+V.Local.sQuery.Declare(String)
+Gui.F_MEU.ddl_listName.ClearItems
+
+F.Intrinsic.Control.If(V.Screen.F_MEU!ddl_listType.ListIndex,=,0)
+	'named lists with user access
+	V.Local.sQuery.Set("select Title from CRM_FLTR_LIST_HEADER order by title")
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+		Gui.F_MEU.ddl_listName.AddItem(V.ODBC.conX!rst.FieldValTrim!TITLE)
+		F.ODBC.conX!rst.MoveNext
+	F.Intrinsic.Control.Loop
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Else
+	'opportunity groups
+	V.Local.sQuery.Set("Select OGDesc from CRM_OppGrouping order by OGDesc")
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+		Gui.F_MEU.ddl_listName.AddItem(V.ODBC.conX!rst.FieldValTrim!OGDESC)
+		F.ODBC.conX!rst.MoveNext
+	F.Intrinsic.Control.Loop
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.EndIf
+
+Gui.F_MEU.ddl_listName.ListIndex(0)
+
+program.sub.ddl_listtype_change.end
+
+program.sub.cmd_filebrowser_click.start
+V.Local.sFileRet.Declare(String)
+
+Function.Intrinsic.UI.ShowOpenFileDialog("","",V.Caller.ProgramsDir,V.Local.sFileRet)
+
+F.Intrinsic.Control.If(V.Local.sFileRet,<>,"")
+	Gui.F_MEU.txt_attachment.Text(V.Local.sFileRet)
+F.Intrinsic.Control.EndIf
+
+program.sub.cmd_filebrowser_click.end
+
+program.sub.cmd_attach_click.start
+
+F.Intrinsic.Control.If(V.Screen.F_MEU!txt_attachment.Text,<>,"")
+	V.Local.iRowCnt.Declare(Long)
+	V.Local.iR.Declare(Long)
+	V.Local.sTemp.Declare(String)
+
+	V.Local.iRowCnt.Set(V.Screen.F_MEU!gsfg_attachments.Rows)
+
+	Gui.F_MEU.gsfg_attachments.GetTextMatrix(0,1,V.Local.sTemp)
+	F.Intrinsic.Control.If(V.Local.sTemp,<>,"")
+		'add new row
+		F.Intrinsic.Math.Add(V.Local.iRowCnt,1,V.Local.iR)
+		Gui.F_MEU.gsfg_attachments.Rows(V.Local.iR)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Math.Sub(V.Local.iRowCnt,1,V.Local.iRowCnt)
+	F.Intrinsic.Control.EndIf
+
+	Gui.F_MEU.gsfg_attachments.TextMatrix(0,V.Local.iRowCnt,V.Screen.F_MEU!txt_attachment.Text)
+	Gui.F_MEU.gsfg_attachments.ApplyStyle(V.Local.iRowCnt,1)
+	Gui.F_MEU.gsfg_attachments.ApplyStyle(0,0)
+	Gui.F_MEU.gsfg_attachments.FixedRows(1)
+	Gui.F_MEU.txt_attachment.Text("")
+F.Intrinsic.Control.EndIf
+
+program.sub.cmd_attach_click.end
+
+program.sub.gsfg_attachments_commandclick.start
+
+
+V.Local.iRow.Declare(Long)
+F.Intrinsic.Math.Sub(V.Args.Key,1,V.Local.iRow)
+
+Gui.F_MEU.gsfg_attachments.deleteRow(V.Local.iRow)
+Gui.F_MEU.gsfg_attachments.ApplyStyle(0,0)
+Gui.F_MEU.gsfg_attachments.FixedRows(1)
+
+program.sub.gsfg_attachments_commandclick.end
+
+program.sub.cmd_queue_click.start
+
+V.Local.sCoCode.Declare(String)
+V.Local.iUserID.Declare(Long)
+V.Local.sCallingPgm.Declare(String)
+V.Local.sSubject.Declare(String)
+V.Local.sSenderInfo.Declare(String)
+V.Local.sRecipientList.Declare(String)
+V.Local.sBody.Declare(String)
+V.Local.iMode.Declare(Long)
+V.Local.sReplyToAddr.Declare(String)
+V.Local.bReadReceipt.Declare(Boolean)
+V.Local.sAdditionalHeaders.Declare(String)
+V.Local.dDeferredDelivery.Declare(Date)
+V.Local.sMeta0.Declare(String)
+V.Local.sMeta1.Declare(String)
+V.Local.sMeta2.Declare(String)
+V.Local.sMeta3.Declare(String)
+V.Local.sMeta4.Declare(String)
+V.Local.sAttachments.Declare(String)
+V.Local.bDeleteAttach.Declare(Boolean)
+V.Local.iC.Declare(Long)
+V.Local.iR.Declare(Long)
+V.Local.sTemp.Declare(String)
+V.Local.sAttchFile.Declare(String)
+
+Gui.F_MEU..Enabled(False)
+
+F.Intrinsic.String.Concat("RTFPlease take the time to view the government regulations reguarding email advertisements and spam. ",V.Ambient.NewLine,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sTemp,"http://business.ftc.gov/documents/bus61-can-spam-act-compliance-guide-business",V.Ambient.NewLine,V.Local.sTemp)
+F.Intrinsic.String.Concat(V.Local.sTemp,"Be advised,each non-compliance email can result in a penalty of up to $16,000.",V.Local.sTemp)
+F.Intrinsic.Task.ShellExec(V.Screen.F_MEU.HWnd,"","http://business.ftc.gov/documents/bus61-can-spam-act-compliance-guide-business","","",1)
+
+F.Intrinsic.UI.MsgBoxExt("Mass Email Acknowledgement",V.Local.sTemp,"24*!*Send Email*!*Cancel")
+F.Intrinsic.Control.If(Variable.Ambient.AltBoxClick,=,3)
+	'Pull screen values
+	V.Local.sCoCode.Set(V.Caller.CompanyCode)
+	F.Global.Security.GetUserID(V.Caller.User,V.Caller.CompanyCode,V.Local.iUserID)
+	V.Local.sCallingPgm.Set("Mass Emailing Utility")
+	V.Local.sSubject.Set(V.Screen.F_MEU!txt_subject.Text)
+	V.Local.sSenderInfo.Set(V.Screen.F_MEU!txt_from.Text)
+	V.Local.sAdditionalHeaders.Set(V.Screen.F_MEU!txt_adtlHeaders.Text)
+
+	Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Checking for attachements...")
+	F.Intrinsic.Math.Sub(V.Screen.F_MEU!gsfg_attachments.Rows,1,V.Local.iR)
+	F.Intrinsic.Control.For(V.Local.iC,1,V.Local.iR,1)
+		F.Intrinsic.Control.If(V.Local.sAttachments,=,"")
+			Gui.F_MEU.gsfg_attachments.GetTextMatrix(0,V.Local.iC,V.Local.sAttchFile)
+			F.Intrinsic.File.GetFileNameFromFQN(V.Local.sAttchFile,V.Local.sTemp)
+			F.Intrinsic.File.GetPathFromFQN(V.Local.sAttchFile,V.Local.sAttchFile)
+			F.Intrinsic.String.Concat(V.Local.sTemp,"*!*",V.Local.sAttchFile,V.Local.sAttachments)
+		F.Intrinsic.Control.Else
+			Gui.F_MEU.gsfg_attachments.GetTextMatrix(0,V.Local.iC,V.Local.sAttchFile)
+			F.Intrinsic.File.GetFileNameFromFQN(V.Local.sAttchFile,V.Local.sTemp)
+			F.Intrinsic.File.GetPathFromFQN(V.Local.sAttchFile,V.Local.sAttchFile)
+			F.Intrinsic.String.Concat(V.Local.sTemp,"*!*",V.Local.sAttchFile,V.Local.sTemp)
+			F.Intrinsic.String.Concat(V.Local.sAttachments,"@!@",V.Local.sTemp,V.Local.sAttachments)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iC)
+	Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,V.Local.sAttachments)
+
+	'determine if sending to a list or sending a test message
+	F.Intrinsic.Control.If(V.Screen.F_MEU!chk_testMsg.Value,=,0)
+		Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Sending email to named list.")
+
+		'deferred deliverly only allowed when sending to a list
+		F.Intrinsic.Control.If(V.Screen.F_MEU!chk_deferSend.Value,=,1)
+			V.Local.dDeferredDelivery.Set(V.Screen.F_MEU!dtp_defer.Value)
+			Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Delivery of message to be deferred.")
+		F.Intrinsic.Control.EndIf
+
+		'need to send  separate emails to each recipient because of WCs
+		F.Intrinsic.Control.CallSub(Get_recipient_list)
+		F.Intrinsic.Control.For(V.Local.iC,1,V.uGlobal.uRecipients.UBound,1)
+			F.Intrinsic.String.Concat(V.uGlobal.uRecipients(V.Local.iC)!sName,"*!*",V.uGlobal.uRecipients(V.Local.iC)!sEmail,V.Local.sRecipientList)
+			F.Intrinsic.Control.CallSub(Check_wildcards,"sBody",V.Screen.F_MEU!txt_body.Text,"iD",V.Local.iC)
+			V.Local.sBody.Set(V.Args.sBodyText)
+			F.Intrinsic.Control.If(V.Local.sAttachments,=,"*!*")
+				V.Local.sAttachments.Set("")
+			F.Intrinsic.Control.EndIf
+			F.Global.Messaging.QueueMessage(V.Local.sCoCode,V.Local.iUserID,V.Local.sCallingPgm,V.Local.sSubject,V.Local.sSenderInfo,V.Local.sRecipientList,V.Local.sBody,V.Local.iMode,V.Local.sReplyToAddr,V.Local.bReadRecipt,V.Local.sAdditionalHeaders,V.Local.dDeferredDelivery,V.Local.sMeta0,V.Local.sMeta1,V.Local.sMeta2,V.Local.sMeta3,V.Local.sMeta4,V.Local.sAttachments,V.Local.bDeleteAttach)
+			Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Email has been sent.")
+			F.Intrinsic.Control.CallSub(Create_event,"iD",V.Local.iC)
+		F.Intrinsic.Control.Next(V.Local.iC)
+
+	F.Intrinsic.Control.Else
+		Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Sending test message rather than named list.")
+		V.Local.sRecipientList.Set(V.Screen.F_MEU!txt_testMsg.Text)
+		V.Local.sBody.Set(V.Screen.F_MEU!txt_body.Text)
+			F.Intrinsic.Control.If(V.Local.sAttachments,=,"*!*")
+				V.Local.sAttachments.Set("")
+			F.Intrinsic.Control.EndIf
+		F.Global.Messaging.QueueMessage(V.Local.sCoCode,V.Local.iUserID,V.Local.sCallingPgm,V.Local.sSubject,V.Local.sSenderInfo,V.Local.sRecipientList,V.Local.sBody,V.Local.iMode,V.Local.sReplyToAddr,V.Local.bReadRecipt,V.Local.sAdditionalHeaders,V.Local.dDeferredDelivery,V.Local.sMeta0,V.Local.sMeta1,V.Local.sMeta2,V.Local.sMeta3,V.Local.sMeta4,V.Local.sAttachments,V.Local.bDeleteAttach)
+		Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Email has been sent.")
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.UI.Msgbox("Emails Sent.")
+F.Intrinsic.Control.Else
+	Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Sending cancelled.")
+F.Intrinsic.Control.EndIf
+
+Gui.F_MEU..Enabled(True)
+
+program.sub.cmd_queue_click.end
+
+Program.Sub.format_screen.Start
+
+V.Local.iRows.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.sEmail.Declare(String)
+
+Gui.F_MEU.gsfg_attachments.Rows(1)
+Gui.F_MEU.gsfg_attachments.Rows(2)
+Gui.F_MEU.gsfg_attachments.Cols(2)
+
+Gui.F_MEU.gsfg_attachments.TextMatrix(0,0,"Attachment")
+Gui.F_MEU.gsfg_attachments.TextMatrix(1,0,"")
+
+'title buildstyle
+F.Intrinsic.Control.For(V.Local.iC,0,1,1)
+	Gui.F_MEU.gsfg_attachments.BuildStyle(0,V.Local.iC,"Format","Alignment",4)
+	Gui.F_MEU.gsfg_attachments.BuildStyle(0,V.Local.iC,"Type","Locked",True)
+F.Intrinsic.Control.Next(V.Local.iC)
+
+'data buildstyle
+Gui.F_MEU.gsfg_attachments.BuildStyle(1,0,"Format","Alignment",2)
+Gui.F_MEU.gsfg_attachments.BuildStyle(1,0,"Type","Locked",True)
+Gui.F_MEU.gsfg_attachments.BuildStyle(1,1,"Type","Command","Remove")
+Gui.F_MEU.gsfg_attachments.BuildStyle(1,1,"Format","Alignment",4)
+
+Gui.F_MEU.gsfg_attachments.ApplyStyle(0,0)
+Gui.F_MEU.gsfg_attachments.SetColumnPercentages(".75:.25")
+Gui.F_MEU.gsfg_attachments.FixedRows(1)
+
+Gui.F_MEU.ddl_listType.ClearItems
+Gui.F_MEU.ddl_listType.AddItem("Named List",0)
+Gui.F_MEU.ddl_listType.AddItem("Opportunity Group",1)
+Gui.F_MEU.ddl_listType.ListIndex(0)
+
+Gui.F_MEU.ddl_CnctType.ClearItems
+Gui.F_MEU.ddl_CnctType.AddItem("Company Primary Email",0)
+Gui.F_MEU.ddl_CnctType.AddItem("Primary Contact Only",1)
+Gui.F_MEU.ddl_CnctType.AddItem("All Active Contacts",2)
+Gui.F_MEU.ddl_CnctType.AddItem("All Contacts",3)
+Gui.F_MEU.ddl_CnctType.ListIndex(0)
+
+Gui.F_MEU.ddl_logAction.ClearItems
+Gui.F_MEU.ddl_logAction.AddItem("Closed Action",0)
+Gui.F_MEU.ddl_logAction.AddItem("Customer Note",1)
+Gui.F_MEU.ddl_logAction.ListIndex(0)
+
+Gui.F_MEU.chk_ExclTable.Value(1)
+Gui.F_MEU.chk_deferSend.Value(0)
+Gui.F_MEU.chk_logAs.Value(0)
+Gui.F_MEU.chk_testMsg.Value(0)
+Gui.F_MEU.dtp_defer.Value(V.Ambient.Now)
+Gui.F_MEU.txt_adtlHeaders.Text("")
+Gui.F_MEU.txt_attachment.Text("")
+Gui.F_MEU.txt_body.Text("")
+Gui.F_MEU.txt_event.Text("")
+Gui.F_MEU.txt_subject.Text("")
+Gui.F_MEU.txt_testMsg.Text("")
+
+F.Global.Security.GetUserEmail(V.Caller.User,V.Caller.CompanyCode,V.Local.sEmail)
+Gui.F_MEU.txt_from.Text(V.Local.sEmail)
+
+Program.Sub.format_screen.End
+
+program.sub.chk_testmsg_click.start
+
+F.Intrinsic.Control.If(V.Screen.F_MEU!chk_testMsg.Value,=,1)
+	Gui.F_MEU.chk_deferSend.Enabled(False)
+	Gui.F_MEU.dtp_defer.Enabled(False)
+F.Intrinsic.Control.Else
+	Gui.F_MEU.chk_deferSend.Enabled(True)
+	Gui.F_MEU.dtp_defer.Enabled(True)
+F.Intrinsic.Control.EndIf
+
+program.sub.chk_testmsg_click.end
+
+program.sub.cmd_clear_click.start
+
+F.Intrinsic.Control.CallSub(Format_screen)
+
+program.sub.cmd_clear_click.end
+
+Program.Sub.get_recipient_list.Start
+
+V.uGlobal.uComp.Redim(0,0)
+V.uGlobal.uRecipients.Redim(0,0)
+V.Local.iUB.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.sQuery.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.sMessage.Declare(String)
+
+'First build a list of all companies/types to be included
+F.Intrinsic.Control.If(V.Screen.F_MEU!ddl_listType.ListIndex,=,0)
+	Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Searching for all companies in the given named list.")
+	'Named List
+	F.Intrinsic.Control.If(V.Screen.F_MEU!ddl_listName.text,<>,"")
+		Function.Intrinsic.String.Concat("SELECT CFL_ID FROM CRM_FLTR_LIST_HEADER WHERE TITLE = '",V.Screen.F_MEU!ddl_listName.text,"'",V.Local.sQuery)
+		Function.ODBC.Connection!conX.ExecuteAndReturn(V.Local.sQuery,V.Local.sTemp)
+		Function.Intrinsic.String.Concat("SELECT COMPANY, COMPANY_NAME, TYPE FROM CRM_FLTR_LIST_LINES WHERE CFL_ID = '",V.Local.sTemp,"'",V.Local.sQuery)
+		F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+		F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+			F.Intrinsic.Math.Add(V.uGlobal.uComp.UBound,1,V.Local.iUB)
+			V.uGlobal.uComp.RedimPreserve(0,V.Local.iUB)
+			V.uGlobal.uComp(V.Local.iUB)!sComp.Set(V.ODBC.conX!rst.FieldValTrim!COMPANY)
+			V.uGlobal.uComp(V.Local.iUB)!sType.Set(V.ODBC.conX!rst.FieldValTrim!TYPE)
+			V.uGlobal.uComp(V.Local.iUB)!sCompName.Set(V.ODBC.conX!rst.FieldValTrim!COMPANY_NAME)
+			F.ODBC.conX!rst.MoveNext
+		F.Intrinsic.Control.Loop
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Else
+ 	Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Searching for companies in the given opportunity group.")
+	'Opp Group
+	F.Intrinsic.Control.If(V.Screen.F_MEU!ddl_listName.text,<>,"")
+		Function.Intrinsic.String.Concat("SELECT OGID FROM CRM_OPPGROUPING WHERE OGDESC = '",V.Screen.F_MEU!ddl_listName.text,"'",V.Local.sQuery)
+		Function.ODBC.Connection!conX.ExecuteAndReturn(V.Local.sQuery,V.Local.sTemp)
+		Function.Intrinsic.String.Concat("SELECT COMPID, COMPTYPE FROM CRM_OPP_MASTER WHERE OGID = '",V.Local.sTemp,"'",V.Local.sQuery)
+		F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+		F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+			F.Intrinsic.Math.Add(V.uGlobal.uComp.UBound,1,V.Local.iUB)
+			V.uGlobal.uComp.RedimPreserve(0,V.Local.iUB)
+			V.uGlobal.uComp(V.Local.iUB)!sComp.Set(V.ODBC.conX!rst.FieldValTrim!COMPID)
+			F.Intrinsic.Control.SelectCase(V.ODBC.conX!rst.FieldValTrim!COMPTYPE)
+			F.Intrinsic.Control.Case("15")
+				V.uGlobal.uComp(V.Local.iUB)!sType.Set("C")
+			F.Intrinsic.Control.Case("10")
+				V.uGlobal.uComp(V.Local.iUB)!sType.Set("V")
+			F.Intrinsic.Control.Case("18")
+				V.uGlobal.uComp(V.Local.iUB)!sType.Set("P")
+			F.Intrinsic.Control.Case("19")
+				V.uGlobal.uComp(V.Local.iUB)!sType.Set("S")
+			F.Intrinsic.Control.EndSelect
+			F.ODBC.conX!rst.MoveNext
+		F.Intrinsic.Control.Loop
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+
+F.Intrinsic.Control.For(V.Local.iC,1,V.uGlobal.uComp.UBound,1)
+	Function.Intrinsic.String.Concat("SELECT CUSTOMER_MASTER.NAME_CUSTOMER, CUSTOMER_SALES.EMAIL FROM CUSTOMER_MASTER JOIN CUSTOMER_SALES ON CUSTOMER_MASTER.CUSTOMER=CUSTOMER_SALES.CUSTOMER WHERE CUSTOMER_SALES.REC = '2' AND CUSTOMER_MASTER.CUSTOMER = '",V.uGlobal.uComp(V.Local.iC)!sComp,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,=,False)		
+		V.uGlobal.uComp(V.Local.iC)!sCompName.Set(V.ODBC.conX!rst.FieldValTrim!NAME_CUSTOMER)
+		V.uGlobal.uComp(V.Local.iC)!sCompEml.Set(V.ODBC.conX!rst.FieldValTrim!EMAIL)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Next(V.Local.iC)
+
+'Then build a list of all the specified contacts for the given companies
+F.Intrinsic.Control.If(V.Screen.F_MEU!ddl_CnctType.ListIndex,=,0)
+	'Company Primary Email
+	Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Searching for primary company emails")
+	F.Intrinsic.Control.For(V.Local.iC,1,V.uGlobal.uComp.UBound,1)
+		F.Intrinsic.String.Concat("SELECT CUSTOMER_MASTER.NAME_CUSTOMER, CUSTOMER_SALES.EMAIL FROM CUSTOMER_MASTER JOIN CUSTOMER_SALES ON CUSTOMER_MASTER.CUSTOMER=CUSTOMER_SALES.CUSTOMER WHERE CUSTOMER_SALES.REC = '2' AND CUSTOMER_MASTER.CUSTOMER = '",V.uGlobal.uComp(V.Local.iC)!sComp, V.Local.sQuery)
+		F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+			F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,=,False)
+				F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldValTrim!EMAIL,<>,"")
+					F.Intrinsic.Math.Add(V.uGlobal.uRecipients.UBound,1,V.Local.iUB)
+					V.uGlobal.uRecipients.RedimPreserve(0,V.Local.iUB)
+					V.uGlobal.uRecipients(V.Local.iUB)!sName.Set(V.ODBC.conX!rst.FieldValTrim!NAME)
+					V.uGlobal.uRecipients(V.Local.iUB)!sEmail.Set(V.ODBC.conX!rst.FieldValTrim!EMAIL)
+					V.uGlobal.uRecipients(V.Local.iUB)!iCompIndex.Set(V.Local.iC)
+					V.uGlobal.uComp(V.Local.iC)!sCompName.Set(V.ODBC.conX!rst.FieldValTrim!NAME)
+					V.uGlobal.uComp(V.Local.iC)!sCompEml.Set(V.ODBC.conX!rst.FieldValTrim!EMAIL)
+				F.Intrinsic.Control.Else
+					F.Intrinsic.String.Concat("No company primary email address was found for ",V.ODBC.conX!rst.FieldValTrim!NAME,V.Local.sMessage)
+					Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,V.Local.sMessage)
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.ElseIf(V.Screen.F_MEU!ddl_CnctType.ListIndex,=,1)
+	'Primary Contact Only
+	Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Searching for emails of primary contacts")
+	F.Intrinsic.Control.For(V.Local.iC,1,V.uGlobal.uComp.UBound,1)
+		F.Intrinsic.String.Concat("select distinct Name, Email1, Name_Prefix, Name_First, Name_Last, Name_Suffix, Title, Name_Preferred from CONTACT WHERE CUST = '",V.uGlobal.uComp(V.Local.iC)!sComp,"' AND TYPE = '",V.uGlobal.uComp(V.Local.iC)!sType, "'", V.Local.sQuery)
+		F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+			F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,=,False)
+				F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldValTrim!EMAIL1,<>,"")
+					F.Intrinsic.Math.Add(V.uGlobal.uRecipients.UBound,1,V.Local.iUB)
+					V.uGlobal.uRecipients.RedimPreserve(0,V.Local.iUB)
+					V.uGlobal.uRecipients(V.Local.iUB)!sName.Set(V.ODBC.conX!rst.FieldValTrim!NAME)
+					V.uGlobal.uRecipients(V.Local.iUB)!sEmail.Set(V.ODBC.conX!rst.FieldValTrim!EMAIL1)
+					V.uGlobal.uRecipients(V.Local.iUB)!sPrefix.Set(V.ODBC.conX!rst.FieldValTrim!NAME_PREFIX)
+					V.uGlobal.uRecipients(V.Local.iUB)!sFirst.Set(V.ODBC.conX!rst.FieldValTrim!NAME_FIRST)
+					V.uGlobal.uRecipients(V.Local.iUB)!sLast.Set(V.ODBC.conX!rst.FieldValTrim!NAME_LAST)
+					V.uGlobal.uRecipients(V.Local.iUB)!sSfx.Set(V.ODBC.conX!rst.FieldValTrim!NAME_SUFFIX)
+					V.uGlobal.uRecipients(V.Local.iUB)!sPreferred.Set(V.ODBC.conX!rst.FieldValTrim!NAME_PREFERRED)
+					V.uGlobal.uRecipients(V.Local.iUB)!sJobTitle.Set(V.ODBC.conX!rst.FieldValTrim!TITLE)
+					V.uGlobal.uRecipients(V.Local.iUB)!iCompIndex.Set(V.Local.iC)
+				F.Intrinsic.Control.Else
+					F.Intrinsic.String.Concat("No primary contact email address was found for ",V.ODBC.conX!rst.FieldValTrim!NAME," at ",V.uGlobal.uComp(V.Local.iC)!sComp,V.Local.sMessage)
+					Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,V.Local.sMessage)
+				F.Intrinsic.Control.EndIf
+			F.Intrinsic.Control.Else
+				F.Intrinsic.String.Concat("No primary contact was found for ",V.uGlobal.uComp(V.Local.iC)!sComp,V.Local.sMessage)
+				Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,V.Local.sMessage)
+			F.Intrinsic.Control.EndIf
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.ElseIf(V.Screen.F_MEU!ddl_CnctType.ListIndex,=,2)
+	'All Active Contacts
+	Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Searching for emails of active contacts")
+	F.Intrinsic.Control.For(V.Local.iC,1,V.uGlobal.uComp.UBound,1)
+		F.Intrinsic.String.Concat("SELECT NAME, EMAIL1, NAME_PREFIX, NAME_FIRST, NAME_LAST, NAME_SUFFIX, NAME_PREFERRED, TITLE FROM CONTACT WHERE ACTIVE = 1 and CUST = '",V.uGlobal.uComp(V.Local.iC)!sComp,"' AND TYPE = '",V.uGlobal.uComp(V.Local.iC)!sType,"'",V.Local.sQuery)
+		F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+			F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+				F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldValTrim!EMAIL1,<>,"")
+					F.Intrinsic.Math.Add(V.uGlobal.uRecipients.UBound,1,V.Local.iUB)
+					V.uGlobal.uRecipients.RedimPreserve(0,V.Local.iUB)
+					V.uGlobal.uRecipients(V.Local.iUB)!sName.Set(V.ODBC.conX!rst.FieldValTrim!NAME)
+					V.uGlobal.uRecipients(V.Local.iUB)!sEmail.Set(V.ODBC.conX!rst.FieldValTrim!EMAIL1)
+					V.uGlobal.uRecipients(V.Local.iUB)!sPrefix.Set(V.ODBC.conX!rst.FieldValTrim!NAME_PREFIX)
+					V.uGlobal.uRecipients(V.Local.iUB)!sFirst.Set(V.ODBC.conX!rst.FieldValTrim!NAME_FIRST)
+					V.uGlobal.uRecipients(V.Local.iUB)!sLast.Set(V.ODBC.conX!rst.FieldValTrim!NAME_LAST)
+					V.uGlobal.uRecipients(V.Local.iUB)!sSfx.Set(V.ODBC.conX!rst.FieldValTrim!NAME_SUFFIX)
+					V.uGlobal.uRecipients(V.Local.iUB)!sPreferred.Set(V.ODBC.conX!rst.FieldValTrim!NAME_PREFERRED)
+					V.uGlobal.uRecipients(V.Local.iUB)!sJobTitle.Set(V.ODBC.conX!rst.FieldValTrim!TITLE)
+					V.uGlobal.uRecipients(V.Local.iUB)!iCompIndex.Set(V.Local.iC)
+				F.Intrinsic.Control.Else
+					F.Intrinsic.String.Concat("No contact email address was found for ",V.ODBC.conX!rst.FieldValTrim!NAME," at ",V.uGlobal.uComp(V.Local.iC)!sComp,V.Local.sMessage)
+					Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,V.Local.sMessage)
+				F.Intrinsic.Control.EndIf
+				F.ODBC.conX!rst.MoveNext
+			F.Intrinsic.Control.Loop
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.iC)
+
+
+F.Intrinsic.Control.ElseIf(V.Screen.F_MEU!ddl_CnctType.ListIndex,=,3)
+	'All Contacts (include inactive)
+	Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,"Searching for emails of all contacts")
+	F.Intrinsic.Control.For(V.Local.iC,1,V.uGlobal.uComp.UBound,1)
+		F.Intrinsic.String.Concat("SELECT NAME, EMAIL1, NAME_PREFIX, NAME_FIRST, NAME_LAST, NAME_SUFFIX, NAME_PREFERRED, TITLE  FROM CONTACT WHERE CUST = '",V.uGlobal.uComp(V.Local.iC)!sComp,"' AND TYPE = '",V.uGlobal.uComp(V.Local.iC)!sType,"'",V.Local.sQuery)
+		F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",V.Local.sQuery)
+			F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+				F.Intrinsic.Control.If(V.ODBC.conX!rst.FieldValTrim!EMAIL1,<>,"")
+					F.Intrinsic.Math.Add(V.uGlobal.uRecipients.UBound,1,V.Local.iUB)
+					V.uGlobal.uRecipients.RedimPreserve(0,V.Local.iUB)
+					V.uGlobal.uRecipients(V.Local.iUB)!sName.Set(V.ODBC.conX!rst.FieldValTrim!NAME)
+					V.uGlobal.uRecipients(V.Local.iUB)!sEmail.Set(V.ODBC.conX!rst.FieldValTrim!EMAIL1)
+					V.uGlobal.uRecipients(V.Local.iUB)!sPrefix.Set(V.ODBC.conX!rst.FieldValTrim!NAME_PREFIX)
+					V.uGlobal.uRecipients(V.Local.iUB)!sFirst.Set(V.ODBC.conX!rst.FieldValTrim!NAME_FIRST)
+					V.uGlobal.uRecipients(V.Local.iUB)!sLast.Set(V.ODBC.conX!rst.FieldValTrim!NAME_LAST)
+					V.uGlobal.uRecipients(V.Local.iUB)!sSfx.Set(V.ODBC.conX!rst.FieldValTrim!NAME_SUFFIX)
+					V.uGlobal.uRecipients(V.Local.iUB)!sPreferred.Set(V.ODBC.conX!rst.FieldValTrim!NAME_PREFERRED)
+					V.uGlobal.uRecipients(V.Local.iUB)!sJobTitle.Set(V.ODBC.conX!rst.FieldValTrim!TITLE)
+					V.uGlobal.uRecipients(V.Local.iUB)!iCompIndex.Set(V.Local.iC)
+				F.Intrinsic.Control.Else
+					F.Intrinsic.String.Concat("No contact email address was found for ",V.ODBC.conX!rst.FieldValTrim!NAME," at ",V.uGlobal.uComp(V.Local.iC)!sComp,V.Local.sMessage)
+					Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,V.Local.sMessage)
+				F.Intrinsic.Control.EndIf
+				F.ODBC.conX!rst.MoveNext
+			F.Intrinsic.Control.Loop
+		F.ODBC.conX!rst.Close
+	F.Intrinsic.Control.Next(V.Local.iC)
+F.Intrinsic.Control.EndIF
+
+'delete email addresses from those who have opted out
+F.Intrinsic.Control.If(V.Screen.F_MEU!chk_ExclTable.Value,=,1)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst","SELECT EMAIL FROM ATG_3926_EML_EXCLUDE")
+	F.Intrinsic.Control.DoUntil(V.ODBC.conX!rst.EOF,=,True)
+		F.Intrinsic.Variable.UDTMultiFlag(V.uGlobal.uRecipients!sEmail,V.ODBC.conX!rst.FieldValTrim!EMAIL)
+		F.Intrinsic.String.Concat("Deleting all instances of ",V.ODBC.conX!rst.FieldValTrim!EMAIL,V.Local.sMessage)
+		Function.Intrinsic.File.Append2FileNewLine(V.Global.sLogFile,V.Local.sMessage)
+		F.ODBC.conX!rst.MoveNext
+	F.Intrinsic.Control.Loop
+	F.ODBC.conX!rst.Close
+	F.Intrinsic.Variable.UDTDeleteFlagged(V.uGlobal.uRecipients)
+F.Intrinsic.Control.EndIf
+
+Program.Sub.get_recipient_list.End
+
+Program.Sub.create_event.Start
+
+V.Local.iN.Declare(Long)
+V.Local.iEID.Declare(Long)
+V.Local.sNote.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.sDate.Declare(String)
+V.Local.sTime.Declare(String)
+V.Local.sEventText.Declare(String)
+
+'EVENT WILDCARDS: companyname, companyemailaddress, contactemailaddress, contactprefix, contactfirstname, contactlastname, contactsuffix, contactpreferredname, contactjobtitle,
+					'sendtolist (either opp group name, or named list title), emailsubject, defereduntildatetime
+
+F.Intrinsic.Control.If(V.Screen.F_MEU!ddl_logAction.ListIndex,=,0)
+'closed action
+	F.Intrinsic.String.Format(V.Ambient.Now,"yyyy-mm-dd  Hh:Nn:Ss.000 AMPM",V.Local.sDate)
+	F.Intrinsic.Control.SelectCase(V.uGlobal.uComp(V.uGlobal.uRecipients(V.Args.iD)!iCompIndex)!sType)
+	F.Intrinsic.Control.Case("C")
+		V.Local.sTemp.set("15")
+	F.Intrinsic.Control.Case("V")
+		V.Local.sTemp.set("10")
+	F.Intrinsic.Control.Case("S")
+		V.Local.sTemp.set("19")
+	F.Intrinsic.Control.Case("P")
+		V.Local.sTemp.set("18")
+	F.Intrinsic.Control.EndSelect
+
+	V.Local.sEventText.Set(V.Screen.F_MEU!txt_event.Text)
+	F.Intrinsic.String.Replace(V.Local.sEventText,"**companyname**",V.uGlobal.uComp(V.uGlobal.uRecipients(V.Args.iD)!iCompIndex)!sCompName,V.Local.sEventText)
+	F.Intrinsic.String.Replace(V.Local.sEventText,"**companyemailaddress**",V.uGlobal.uComp(V.uGlobal.uRecipients(V.Args.iD)!iCompIndex)!sCompEml,V.Local.sEventText)
+
+	F.Intrinsic.Control.If(V.Screen.F_MEU!ddl_CnctType.ListIndex,<>,0)
+		'NOTE: CONTACT WCs WILL NOT WORK IF SENDING TO COMPANY PRIMARY EMAIL
+		F.Intrinsic.String.Replace(V.Local.sEventText,"**contactemailaddress**",V.uGlobal.uRecipients(V.Args.iD)!sEmail,V.Local.sEventText)
+		F.Intrinsic.String.Replace(V.Local.sEventText,"**contactprefix**",V.uGlobal.uRecipients(V.Args.iD)!sPrefix,V.Local.sEventText)
+		F.Intrinsic.String.Replace(V.Local.sEventText,"**contactfirstname**",V.uGlobal.uRecipients(V.Args.iD)!sFirst,V.Local.sEventText)
+		F.Intrinsic.String.Replace(V.Local.sEventText,"**contactlastname**",V.uGlobal.uRecipients(V.Args.iD)!sLast,V.Local.sEventText)
+		F.Intrinsic.String.Replace(V.Local.sEventText,"**contactsuffix**",V.uGlobal.uRecipients(V.Args.iD)!sSfx,V.Local.sEventText)
+		F.Intrinsic.String.Replace(V.Local.sEventText,"**contactpreferredname**",V.uGlobal.uRecipients(V.Args.iD)!sPreferred,V.Local.sEventText)
+		F.Intrinsic.String.Replace(V.Local.sEventText,"**contactjobtitle**",V.uGlobal.uRecipients(V.Args.iD)!sJobTitle,V.Local.sEventText)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.String.Replace(V.Local.sEventText,"**sendtolist**",V.Screen.F_MEU!ddl_listName.Text,V.Local.sEventText)
+	F.Intrinsic.String.Replace(V.Local.sEventText,"**emailsubject**",V.Screen.F_MEU!txt_subject.Text,V.Local.sEventText)
+	F.Intrinsic.String.Replace(V.Local.sEventText,"**defereduntildatetime**",V.Screen.F_MEU!dtp_defer.Value,V.Local.sEventText)
+
+	F.Global.CRM.SaveEvent(-1,"0",V.uGlobal.uComp(V.uGlobal.uRecipients(V.Args.iD)!iCompIndex)!sComp,V.Local.sTemp,"-1","Mass Mailing Utility Email",V.Local.sEventText,V.Ambient.Now,V.Ambient.Now,V.Caller.User,"-1","False","False","0","-1","False","0","-1","1","-1","-1","*NC*","*NC*","*NC*",V.Ambient.Now,V.Caller.User,"*NC*","*NC*","*NC*","*NC*","*NC*","*NC*","*NC*","*NC*","*NC*","*NC*",V.Local.iEID)
+
+
+F.Intrinsic.Control.ElseIf(V.Screen.F_MEU!ddl_logAction.ListIndex,=,1)
+'customer note
+	F.Intrinsic.String.Format(V.Ambient.Now,"yyyymmdd",V.Local.sDate)
+	F.Intrinsic.String.Format(V.Ambient.Now,"HhNnSs00",V.Local.sTime)
+
+	F.ODBC.Connection!conX.OpenLocalRecordsetRW("rst","SELECT * FROM CRM_NOTES_COMBINED")
+
+		V.Local.sEventText.Set(V.Screen.F_MEU!txt_event.Text)
+		F.Intrinsic.String.Replace(V.Local.sEventText,"**companyname**",V.uGlobal.uComp(V.uGlobal.uRecipients(V.Args.iD)!iCompIndex)!sCompName,V.Local.sEventText)
+		F.Intrinsic.String.Replace(V.Local.sEventText,"**companyemailaddress**",V.uGlobal.uComp(V.uGlobal.uRecipients(V.Args.iD)!iCompIndex)!sCompEml,V.Local.sEventText)
+
+		F.Intrinsic.Control.If(V.Screen.F_MEU!ddl_CnctType.ListIndex,<>,0)
+			'NOTE: CONTACT WCs WILL NOT WORK IF SENDING TO COMPANY PRIMARY EMAIL
+			F.Intrinsic.String.Replace(V.Local.sEventText,"**contactemailaddress**",V.uGlobal.uRecipients(V.Args.iD)!sEmail,V.Local.sEventText)
+			F.Intrinsic.String.Replace(V.Local.sEventText,"**contactprefix**",V.uGlobal.uRecipients(V.Args.iD)!sPrefix,V.Local.sEventText)
+			F.Intrinsic.String.Replace(V.Local.sEventText,"**contactfirstname**",V.uGlobal.uRecipients(V.Args.iD)!sFirst,V.Local.sEventText)
+			F.Intrinsic.String.Replace(V.Local.sEventText,"**contactlastname**",V.uGlobal.uRecipients(V.Args.iD)!sLast,V.Local.sEventText)
+			F.Intrinsic.String.Replace(V.Local.sEventText,"**contactsuffix**",V.uGlobal.uRecipients(V.Args.iD)!sSfx,V.Local.sEventText)
+			F.Intrinsic.String.Replace(V.Local.sEventText,"**contactpreferredname**",V.uGlobal.uRecipients(V.Args.iD)!sPreferred,V.Local.sEventText)
+			F.Intrinsic.String.Replace(V.Local.sEventText,"**contactjobtitle**",V.uGlobal.uRecipients(V.Args.iD)!sJobTitle,V.Local.sEventText)
+		F.Intrinsic.Control.EndIf
+
+		F.Intrinsic.String.Replace(V.Local.sEventText,"**sendtolist**",V.Screen.F_MEU!ddl_listName.Text,V.Local.sEventText)
+		F.Intrinsic.String.Replace(V.Local.sEventText,"**emailsubject**",V.Screen.F_MEU!txt_subject.Text,V.Local.sEventText)
+		F.Intrinsic.String.Replace(V.Local.sEventText,"**defereduntildatetime**",V.Screen.F_MEU!dtp_defer.Value,V.Local.sEventText)
+
+		F.ODBC.conX!rst.AddNew
+		F.ODBC.conX!rst.Set!NTYPE("0")
+		F.ODBC.conX!rst.Set!COMPID(V.uGlobal.uComp(V.uGlobal.uRecipients(V.Args.iD)!iCompIndex)!sComp)
+		F.Intrinsic.Control.SelectCase(V.uGlobal.uComp(V.uGlobal.uRecipients(V.Args.iD)!iCompIndex)!sType)
+		F.Intrinsic.Control.Case("C")
+			F.ODBC.conX!rst.Set!COMPTYPE("15")
+		F.Intrinsic.Control.Case("V")
+			F.ODBC.conX!rst.Set!COMPTYPE("10")
+		F.Intrinsic.Control.Case("P")
+			F.ODBC.conX!rst.Set!COMPTYPE("18")
+		F.Intrinsic.Control.Case("S")
+			F.ODBC.conX!rst.Set!COMPTYPE("19")
+		F.Intrinsic.Control.CaseElse
+		F.Intrinsic.Control.EndSelect
+
+		F.ODBC.conX!rst.Set!NOTE_DATETIME(V.Ambient.Now)
+		F.ODBC.conX!rst.Set!NOTES(V.Local.sEventText)
+		F.ODBC.conX!rst.Set!LAST_CHG_BY(V.Caller.User)
+		F.ODBC.conX!rst.Update
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.EndIf
+
+Program.Sub.create_event.End
+
+Program.Sub.check_wildcards.Start
+
+V.Local.sBodyText.Declare(String)
+V.Local.sEventText.Declare(String)
+V.Local.bRet.Declare(Boolean)
+
+V.Local.sBodyText.Set(V.Args.sBody)
+
+'BODY WILDCARDS: companyname, companyemailaddress, contactemailaddress, contactprefix, contactfirstname, contactlastname, contactsuffix, contactpreferredname, contactjobtitle
+F.Intrinsic.String.Replace(V.Local.sBodyText,"<span class="SpellE">","",V.Local.sBodyText)
+F.Intrinsic.String.Replace(V.Local.sBodyText,"</span>","",V.Local.sBodyText)
+F.Intrinsic.String.Replace(V.Local.sBodyText,"**companyname**",V.uGlobal.uComp(V.uGlobal.uRecipients(V.Args.iD)!iCompIndex)!sCompName,V.Local.sBodyText)
+F.Intrinsic.String.Replace(V.Local.sBodyText,"**companyemailaddress**",V.uGlobal.uComp(V.uGlobal.uRecipients(V.Args.iD)!iCompIndex)!sCompEml,V.Local.sBodyText)
+
+F.Intrinsic.Control.If(V.Screen.F_MEU!ddl_CnctType.ListIndex,<>,0)
+	'NOTE: CONTACT WCs WILL NOT WORK IF SENDING TO COMPANY PRIMARY EMAIL
+	F.Intrinsic.String.Replace(V.Local.sBodyText,"**contactemailaddress**",V.uGlobal.uRecipients(V.Args.iD)!sEmail,V.Local.sBodyText)
+	F.Intrinsic.String.Replace(V.Local.sBodyText,"**contactprefix**",V.uGlobal.uRecipients(V.Args.iD)!sPrefix,V.Local.sBodyText)
+	F.Intrinsic.String.Replace(V.Local.sBodyText,"**contactfirstname**",V.uGlobal.uRecipients(V.Args.iD)!sFirst,V.Local.sBodyText)
+	F.Intrinsic.String.Replace(V.Local.sBodyText,"**contactlastname**",V.uGlobal.uRecipients(V.Args.iD)!sLast,V.Local.sBodyText)
+	F.Intrinsic.String.Replace(V.Local.sBodyText,"**contactsuffix**",V.uGlobal.uRecipients(V.Args.iD)!sSfx,V.Local.sBodyText)
+	F.Intrinsic.String.Replace(V.Local.sBodyText,"**contactpreferredname**",V.uGlobal.uRecipients(V.Args.iD)!sPreferred,V.Local.sBodyText)
+	F.Intrinsic.String.Replace(V.Local.sBodyText,"**contactjobtitle**",V.uGlobal.uRecipients(V.Args.iD)!sJobTitle,V.Local.sBodyText)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Variable.AddRV("sBodyText",V.Local.sBodyText)
+
+
+Program.Sub.check_wildcards.End
+
+Program.Sub.Comments.Start
+${$0$}$test1$}$MEK$}$3/6/2014
+Program.Sub.Comments.End
+
