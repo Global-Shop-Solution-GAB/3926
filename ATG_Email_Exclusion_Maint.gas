@@ -1,0 +1,231 @@
+Program.Sub.ScreenSU.Start
+gui.F_MEEU..create
+gui.F_MEEU..caption("Mass Mailing Exclusion Utility")
+gui.F_MEEU..size(9525,6270)
+gui.F_MEEU..position(0,0)
+gui.F_MEEU..event(unload,f_meeu_unload)
+gui.F_MEEU..alwaysontop(False)
+gui.F_MEEU..fontname("Arial")
+gui.F_MEEU..fontsize(8)
+gui.F_MEEU..forecolor(0)
+gui.F_MEEU..fontstyle(,,,,)
+gui.F_MEEU..BackColor(-2147483633)
+gui.F_MEEU..controlbox(True)
+gui.F_MEEU..maxbutton(True)
+gui.F_MEEU..minbutton(True)
+gui.F_MEEU..mousepointer(0)
+gui.F_MEEU..moveable(True)
+gui.F_MEEU..sizeable(False)
+gui.F_MEEU..ShowInTaskBar(True)
+gui.F_MEEU..titlebar(True)
+gui.F_MEEU.gsfgEmail.create(gsflexgrid)
+gui.F_MEEU.gsfgEmail.FixedRows(0)
+gui.F_MEEU.gsfgEmail.FixedCols(0)
+gui.F_MEEU.gsfgEmail.visible(True)
+gui.F_MEEU.gsfgEmail.size(8970,4350)
+gui.F_MEEU.gsfgEmail.zorder(0)
+gui.F_MEEU.gsfgEmail.position(195,795)
+gui.F_MEEU.gsfgEmail.enabled(True)
+gui.F_MEEU.gsfgEmail.event(mousedown,gsfgemail_mousedown)
+gui.F_MEEU.gsfgEmail.event(commandclick,gsfgemail_commandclick)
+gui.F_MEEU.cmd_Save.create(button)
+gui.F_MEEU.cmd_Save.caption("Save")
+gui.F_MEEU.cmd_Save.visible(True)
+gui.F_MEEU.cmd_Save.size(885,375)
+gui.F_MEEU.cmd_Save.zorder(0)
+gui.F_MEEU.cmd_Save.position(200,5300)
+gui.F_MEEU.cmd_Save.enabled(True)
+gui.F_MEEU.cmd_Save.fontname("Arial")
+gui.F_MEEU.cmd_Save.fontsize(8)
+gui.F_MEEU.cmd_Save.event(click,cmd_save_click)
+gui.F_MEEU.cmd_Save.defaultvalue("")
+gui.F_MEEU.cmd_Save.controlgroup(0)
+gui.F_MEEU.txt_email.create(textbox,"",True,3945,300,0,200,400,True,0,Arial,8,-2147483643,1)
+gui.F_MEEU.txt_email.event(keypressenter,cmd_add_click)
+gui.F_MEEU.txt_email.defaultvalue("")
+gui.F_MEEU.txt_email.controlgroup(0)
+gui.F_MEEU.cmd_Add.create(button)
+gui.F_MEEU.cmd_Add.caption("Add")
+gui.F_MEEU.cmd_Add.visible(True)
+gui.F_MEEU.cmd_Add.size(855,375)
+gui.F_MEEU.cmd_Add.zorder(0)
+gui.F_MEEU.cmd_Add.position(4200,300)
+gui.F_MEEU.cmd_Add.enabled(True)
+gui.F_MEEU.cmd_Add.fontname("Arial")
+gui.F_MEEU.cmd_Add.fontsize(8)
+gui.F_MEEU.cmd_Add.event(click,cmd_add_click)
+gui.F_MEEU.cmd_Add.defaultvalue("")
+gui.F_MEEU.cmd_Add.controlgroup(0)
+gui.F_MEEU.lbl_email.create(label,"Email",True,1935,255,1,200,100,True,0,Arial,8,-2147483633,0)
+gui.F_MEEU.lbl_email.defaultvalue("")
+gui.F_MEEU.lbl_email.controlgroup(0)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.UDT.ExcludeEm.Define("sEmail",String,EMAIL)
+Variable.UDT.ExcludeEm.Define("dOptDate",Date,OPT_DATETIME)
+Variable.uGlobal.uEML.Declare("ExcludeEm")
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+
+F.ODBC.Connection!conX.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+F.Intrinsic.Control.CallSub(Format_screen)
+Gui.F_MEEU..Show
+
+Program.Sub.Main.End
+
+program.sub.cmd_save_click.start
+
+V.Local.iC.Declare(Long)
+V.Local.sQuery.Declare(String)
+
+Gui.F_MEEU.gsfgEmail.ExportToUDT(V.uGlobal.uEML,"0*!*1","sEmail*!*dOptDate",1,-1,False)
+
+F.ODBC.Connection!conX.Execute("DELETE FROM ATG_EML_EXCLUDE")
+
+F.Intrinsic.UI.InvokeWaitDialog("Now saving email exclusion list.","Saving List")
+
+F.Intrinsic.Control.For(V.Local.iC,0,V.uGlobal.uEML.UBound,1)
+	F.Intrinsic.String.Concat("SELECT * FROM ATG_EML_EXCLUDE WHERE EMAIL = '",V.uGlobal.uEML(V.Local.iC)!sEmail,"'",V.Local.sQuery)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRW("rst",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conX!rst.EOF,=,True)
+		F.ODBC.conX!rst.AddNew
+		F.ODBC.conX!rst.Set!EMAIL(V.uGlobal.uEML(V.Local.iC)!sEmail)
+		F.ODBC.conX!rst.Set!OPT_DATETIME(V.uGlobal.uEML(V.Local.iC)!dOptDate)
+		F.ODBC.conX!rst.Update
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conX!rst.Close
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.UI.CloseWaitDialog
+F.Intrinsic.UI.Msgbox("List Saved.")
+
+program.sub.cmd_save_click.End
+
+program.sub.cmd_add_click.start
+
+F.Intrinsic.Control.If(V.Screen.F_MEEU!txt_email.Text,<>,"")
+	V.Local.iRowCnt.Declare(Long)
+	V.Local.iR.Declare(Long)
+	V.Local.sTemp.Declare(String)
+
+	V.Local.iRowCnt.Set(V.Screen.F_MEEU!gsfgemail.Rows)
+
+	Gui.F_MEEU.gsfgemail.GetTextMatrix(0,1,V.Local.sTemp)
+	F.Intrinsic.Control.If(V.Local.sTemp,<>,"")
+		'add new row
+		F.Intrinsic.Math.Add(V.Local.iRowCnt,1,V.Local.iR)
+		Gui.F_MEEU.gsfgemail.Rows(V.Local.iR)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.Math.Sub(V.Local.iRowCnt,1,V.Local.iRowCnt)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.String.LCase(V.Screen.F_MEEU!txt_email.Text,V.Local.sTemp)
+	Gui.F_MEEU.gsfgemail.TextMatrix(0,V.Local.iRowCnt,V.Local.sTemp)
+	Gui.F_MEEU.gsfgemail.TextMatrix(1,V.Local.iRowCnt,V.Ambient.Now)
+	Gui.F_MEEU.gsfgemail.ApplyStyle(V.Local.iRowCnt,1)
+	Gui.F_MEEU.gsfgemail.ApplyStyle(0,0)
+	Gui.F_MEEU.gsfgemail.FixedRows(1)
+	Gui.F_MEEU.txt_email.Text("")
+F.Intrinsic.Control.EndIf
+
+program.sub.cmd_add_click.End
+
+program.sub.gsfgemail_commandclick.start
+
+Gui.F_MEEU.gsfgemail.deleteRow(V.Args.Key)
+Gui.F_MEEU.gsfgemail.ApplyStyle(0,0)
+Gui.F_MEEU.gsfgemail.FixedRows(1)
+
+program.sub.gsfgemail_commandclick.End
+
+program.sub.gsfgemail_mousedown.start
+Variable.Local.iCurrentCol.Declare(Long)
+Variable.Local.iRows.Declare(Long)
+
+'Make sure there are multiple rows in the grid to sort
+Variable.Local.iRows.Set(Variable.Screen.F_MEEU!gsfgemail.Rows)
+Function.Intrinsic.Control.If(Variable.Local.iRows,>,2)
+
+	'iRows is the index of the last data row in the grid
+	Function.Intrinsic.Math.Sub(Variable.Local.iRows,1,Variable.Local.iRows)
+
+	'iCurrentCol is the column clicked by the user
+	Variable.Local.iCurrentCol.Set(Variable.Screen.F_MEEU!gsfgemail.Col)
+
+	'Sort the grid based on the data type in the current column clicked
+	'Make sure the sort is in ascending order, resort if not
+	Function.Intrinsic.Control.SelectCase(Variable.Local.iCurrentCol)
+		Function.Intrinsic.Control.Case(0)
+			Gui.F_MEEU.gsfgemail.SortColumn(0,0)
+		Function.Intrinsic.Control.Case(1)
+			Gui.F_MEEU.gsfgemail.SortColumn(1,2)
+	Function.Intrinsic.Control.EndSelect
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.gsfgemail_mousedown.End
+
+Program.Sub.format_screen.Start
+
+V.Local.iRows.Declare(Long)
+V.Local.iC.Declare(Long)
+V.Local.sEmail.Declare(String)
+
+Gui.F_MEEU.gsfgemail.Rows(2)
+Gui.F_MEEU.gsfgemail.Cols(3)
+
+Gui.F_MEEU.gsfgemail.TextMatrix(0,0,"Email")
+Gui.F_MEEU.gsfgemail.TextMatrix(1,0,"Opt Out Date")
+Gui.F_MEEU.gsfgemail.TextMatrix(2,0,"")
+
+'title buildstyle
+F.Intrinsic.Control.For(V.Local.iC,0,2,1)
+	Gui.F_MEEU.gsfgemail.BuildStyle(0,V.Local.iC,"Format","Alignment",4)
+	Gui.F_MEEU.gsfgemail.BuildStyle(0,V.Local.iC,"Type","Locked",True)
+F.Intrinsic.Control.Next(V.Local.iC)
+
+'data buildstyle
+Gui.F_MEEU.gsfgemail.BuildStyle(1,0,"Format","Alignment",2)
+Gui.F_MEEU.gsfgemail.BuildStyle(1,0,"Type","Locked",True)
+Gui.F_MEEU.gsfgemail.BuildStyle(1,1,"Format","Alignment",2)
+Gui.F_MEEU.gsfgemail.BuildStyle(1,1,"Type","Locked",True)
+Gui.F_MEEU.gsfgemail.BuildStyle(1,2,"Type","Command","Remove")
+Gui.F_MEEU.gsfgemail.BuildStyle(1,2,"Format","Alignment",4)
+
+Gui.F_MEEU.gsfgemail.ApplyStyle(0,0)
+Gui.F_MEEU.gsfgemail.SetColumnPercentages(".50:.25:.25")
+Gui.F_MEEU.gsfgemail.FixedRows(1)
+
+F.Intrinsic.Control.CallSub(Load_grid_from_udt)
+
+Program.Sub.format_screen.End
+
+program.sub.f_meeu_unload.start
+
+F.ODBC.Connection!conX.Close
+F.Intrinsic.Control.End
+
+program.sub.f_meeu_unload.End
+
+Program.Sub.load_grid_from_UDT.Start
+
+
+
+V.uGlobal.uEML.Redim(0,0)
+F.ODBC.Connection!conX.OpenRecordsetRO("rst","SELECT * FROM ATG_EML_EXCLUDE ORDER BY EMAIL")
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conX","rst","V.uGlobal.uEML",False)
+F.ODBC.conX!rst.Close
+
+Gui.F_MEEU.gsfgEmail.LoadFromUDT("V.uGlobal.uEML","sEmail::0*!*dOptDate::1",1)
+
+Program.Sub.load_grid_from_UDT.End
+
+Program.Sub.Comments.Start
+${$0$}$test2$}$MEK$}$3/6/2014$}$False
+Program.Sub.Comments.End
+
